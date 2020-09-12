@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Created for Aymee Antonio">
+		<meta name="author" content="Giancarlo Alfau">
+		<title>Perk Value Calculator</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Rouge+Script&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Poppins|Rouge+Script&display=swap" rel="stylesheet">
+		<style type="text/css">
+			/*
+			font-family: 'Rouge Script', cursive;
+			font-family: 'Playfair Display', serif;
+			font-family: 'Poppins', sans-serif;
+			*/
+
+			body{
+				font-family: 'Poppins', sans-serif;
+				font-size: 12px;
+				height: 99vh;
+				background-image: url('bg2.jpg');
+				background-repeat: no-repeat;
+				/* background-size: 100% 100%;*/
+				background-size: cover;
+				color: white;
+			}
+
+			select {
+				font-size: 12px !important;
+			}
+
+			.textCursivo {
+				font-family: 'Rouge Script', cursive;
+				font-size: 30px;
+				
+			}
+
+			.textCapital {
+				font-family: 'Playfair Display', serif;
+				font-size: 18px;
+			}
+
+			input {
+				font-size: 12px !important;
+				margin: 0px;
+				background-color: transparent !important;
+				color: white !important;
+				border: 0px !important;
+			}
+
+			input[type="text"]:disabled { color: white; }
+
+			table thead th {
+				font-family: 'Playfair Display', serif;
+				font-size: 10px;
+				text-transform: uppercase;
+				color: white;
+			}
+			td { 
+			color: white;
+			padding: 3px !important;
+			}
+
+			.card {
+				border: 0px !important;
+			}
+
+			.totalClassic{
+				background-color: #002859; /* #1C5FA2;*/
+				/* font-weight: bold;*/
+				color: white;
+			}
+
+			.form-control{
+				padding: 5px 5px !important;
+			}
+
+			.totalPremium{
+				background-color: #002859;
+				
+				color: white;
+			}
+
+			/* TABLE HEADERS CONFIGURATON*/
+			th {
+				font-size: 14px;
+				padding: 4px 2px !important;
+			}
+
+			.card{
+				background-color: rgba(255,255,255,0);
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid mt-3">
+
+			<div class="row">
+				<div class="col-md-5">
+					<h4 class="my-0 font-weight-normal text-center textCapital mb-3">DIFFERENCE CALCULATOR</h4>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th class="text-center">New Rate</th>
+								<th class="text-center">Current Rate</th>
+								<th class="text-center">Total per Person</th>
+								<th class="text-center">Total per Couple</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" id="new_rate" class="form-control text-center" style="background-color: white !important; color: black !important;" value="0"></td>
+								<td><input type="text" id="current_rate" class="form-control text-center" style="background-color: white !important; color: black !important;" value="0"></td>
+								<td><input type="text" id="rate_total_x_person" class="form-control text-center" value="0" disabled></td>
+								<td><input type="text" id="rate_total_x_couple" class="form-control text-center" value="0" disabled></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="col-md-7">
+					<h4 class="my-0 font-weight-normal text-center mb-2">
+						<span class="textCursivo" style="margin-right: 10px;">Sail your way</span>
+						<span class="textCapital">CALCULATOR</span>
+					</h4>
+
+					<!-- FILTERS -->
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Stateroom Category</label>
+								<select id="category" class="form-control">
+									<option value="">Stateroom Category</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Lenght of Sailing</label>
+								<select id="length" class="form-control">
+									<option value="">Length of Sailing</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- TABLE -->
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Perk</th>
+								<th class="text-right">Cost per Day</th>
+								<th class="text-right">Length of Sailing</th>
+								<th class="text-right">Total Cost per Person</th>
+								<th class="text-right">Cost per Couple</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td nowrap>Classic Beverage</td>
+								<td><input type="text" class="form-control text-right" id="classic_bvrg_cost_day" value="70.8" disabled></td>
+								<td><input type="text" class="form-control text-right lengthField" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="classic_bvrg_cost_x_person" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="classic_bvrg_cost_x_couple" value="" disabled></td>
+							</tr>
+							<tr>
+								<td nowrap>Premium Beverage</td>
+								<td><input type="text" class="form-control text-right" id="premium_bvrg_cost_day" value="82.8" disabled></td>
+								<td><input type="text" class="form-control text-right lengthField" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="premium_bvrg_cost_x_person" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="premium_bvrg_cost_x_couple" value="" disabled></td>
+							</tr>
+							<tr>
+								<td nowrap>Gratuities</td>
+								<td><input type="text" class="form-control text-right" id="gratuities_cost_x_day" value="" disabled></td>
+								<td><input type="text" class="form-control text-right lengthField" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="gratuities_cost_x_person" value="566.4" disabled></td>
+								<td><input type="text" class="form-control text-right" id="gratuities_cost_x_couple" value="1132.80" disabled></td>
+							</tr>
+							<tr>
+								<td nowrap>High Speed WIFI<br><small>For 2 devices</small></td>
+								<td><input type="text" class="form-control text-right" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="wifi_cost_x_person" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="wifi_cost_x_couple" value="" disabled></td>
+							</tr>
+							<tr>
+								<td>OBC</td>
+								<td><input type="text" class="form-control text-right" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" value="" disabled></td>
+								<td><input type="text" class="form-control text-right" id="obc_cost_x_person" value="150" disabled></td>
+								<td><input type="text" class="form-control text-right" id="obc_cost_x_couple" value="300" disabled></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-right totalClassic">Total for NON SUITES</td>
+								<td class="text-right totalClassic" id="total_x_person_classic">0.00</td>
+								<td class="text-right totalClassic" id="total_x_couple_classic">0.00</td>
+							</tr>
+							<tr>
+								<td class="text-right totalPremium" colspan="3">Total for SUITES</td>
+								<td class="text-right totalPremium" id="total_x_person_premium">0.00</td>
+								<td class="text-right totalPremium" id="total_x_couple_premium">0.00</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				
+			</div>
+
+		</div>
+
+		<div class="modal" id="diffModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Difference in Rate</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<h4>Insert values below</h4>
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>New Rate</th>
+									<th>Current Rate</th>
+									<th>Total per Person</th>
+									<th>Total per Couple</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="text" id="new_rate" class="form-control" value="0"></td>
+									<td><input type="text" id="current_rate" class="form-control" value="0"></td>
+									<td><input type="text" id="rate_total_x_person" class="form-control" value="0" disabled></td>
+									<td><input type="text" id="rate_total_x_couple" class="form-control" value="0" disabled></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(function(){
+
+			var length = 0;
+			// classic beverages
+			var classic_bvrg_cost_x_person = 0;
+			var classic_bvrg_cost_x_couple = 0;
+			// premium beverages
+			var premium_bvrg_cost_x_person = 0;
+			var premium_bvrg_cost_x_couple = 0;
+			// gratuities
+			var gratuities_cost_x_day = 0;
+			var gratuities_cost_x_person = 0;
+			var gratuities_cost_x_couple = 0;
+			// wifi
+			var wifi_cost_x_person = 0;
+			var wifi_cost_x_couple = 0;
+			// obc
+			var obc_cost_x_person = 150;
+			var obc_cost_x_couple = 300;
+
+			// raw data
+			var categories = [
+				{ 'name' : 'Inside-veranda', 'pricing' : 15.50 },
+				{ 'name' : 'Concierge-Aqua', 'pricing' : 16 },
+				{ 'name' : 'Suites', 'pricing' : 19 },
+			];
+
+			var nights = [
+				{ 'nights' : 2, 'wifi' : 149 },
+				{ 'nights' : 3, 'wifi' : 149 },
+				{ 'nights' : 4, 'wifi' : 273 },
+				{ 'nights' : 5, 'wifi' : 273 },
+				{ 'nights' : 6, 'wifi' : 273 },
+				{ 'nights' : 7, 'wifi' : 405 },
+				{ 'nights' : 8, 'wifi' : 405 },
+				{ 'nights' : 9, 'wifi' : 405 },
+				{ 'nights' : 10, 'wifi' : 488 },
+				{ 'nights' : 11, 'wifi' : 488 },
+				{ 'nights' : 12, 'wifi' : 488 },
+				{ 'nights' : 13, 'wifi' : 488 },
+				{ 'nights' : 14, 'wifi' : 513 },
+				{ 'nights' : 15, 'wifi' : 513 },
+				{ 'nights' : 16, 'wifi' : 513 },
+				{ 'nights' : 17, 'wifi' : 513 },
+				{ 'nights' : 18, 'wifi' : 513 },
+				{ 'nights' : 19, 'wifi' : 513 },
+			];
+
+			var new_rate = 0;
+			var current_rate = 0;
+
+			function generateDropdownContent() {
+				// generate categories dropdown content
+				for(var i=0; i < categories.length; i++){
+					$('#category').append('<option value="'+ categories[i].pricing +'">'+ categories[i].name +'</option>');
+				}
+
+				// generate length of sailing dropdown content
+				for(var i=0; i < nights.length; i++){
+					$('#length').append('<option value="'+ nights[i].nights +'" data-wifi="'+ nights[i].wifi +'">' + nights[i].nights +' Days</option>');
+				}
+			}
+
+			// recalculate on category change
+			$('#category').on('change', function(e){
+				let _pricing = Number( $(this).val() );
+				gratuities_cost_x_day = _pricing;
+
+				$('#gratuities_cost_x_day').val( gratuities_cost_x_day.toFixed(2) );
+				updateForm();
+			});
+
+			// recalculate form on length of sailing change
+			$('#length').on('change', function(e){
+				let _wifiPricing = Number( $("#length option:selected").data('wifi') );
+				let _length = Number( $(this).val() );
+
+				length = _length;
+				wifi_cost_x_person = _wifiPricing;
+				wifi_cost_x_couple = _wifiPricing;
+				updateForm();
+			});
+
+
+			function updateForm(){
+				$('.lengthField').val( length.toString() );
+
+				// classic beverage coverage calculations
+				var _classic_x_day = Number( $('#classic_bvrg_cost_day').val() );
+				let cxperson = _classic_x_day * length;
+				let cxcouple = cxperson * 2;
+				$('#classic_bvrg_cost_x_person').val(cxperson.toFixed(2));
+				$('#classic_bvrg_cost_x_couple').val(cxcouple.toFixed(2));
+				classic_bvrg_cost_x_person = cxperson;
+				classic_bvrg_cost_x_couple = cxcouple;
+
+				// premium beverage coverage calculations
+				var _premium_x_day = Number( $('#premium_bvrg_cost_day').val() );
+				let pxperson = _premium_x_day * length;
+				let pxcouple = pxperson * 2;
+				$('#premium_bvrg_cost_x_person').val(pxperson.toFixed(2));
+				$('#premium_bvrg_cost_x_couple').val(pxcouple.toFixed(2));
+				premium_bvrg_cost_x_person = pxperson;
+				premium_bvrg_cost_x_couple = pxcouple;
+
+
+				// gratuities
+				let _grat_x_person = gratuities_cost_x_day * length;
+				gratuities_cost_x_person = _grat_x_person;
+				gratuities_cost_x_couple = gratuities_cost_x_person * 2;
+				$('#gratuities_cost_x_person').val( Number(gratuities_cost_x_person).toFixed(2) );
+				$('#gratuities_cost_x_couple').val( Number(gratuities_cost_x_couple).toFixed(2) );
+
+
+				// wifi
+				$('#wifi_cost_x_person').val( Number(wifi_cost_x_person).toFixed(2) );
+				$('#wifi_cost_x_couple').val( Number(wifi_cost_x_person).toFixed(2) );
+
+				// obc
+				$('#obc_cost_x_person').val( obc_cost_x_person.toFixed(2) );
+				$('#obc_cost_x_couple').val( obc_cost_x_couple.toFixed(2) );
+
+				let _total_x_person_classic = classic_bvrg_cost_x_person + gratuities_cost_x_person + wifi_cost_x_person + obc_cost_x_person;
+				let _total_x_person_premium = premium_bvrg_cost_x_person + gratuities_cost_x_person + wifi_cost_x_person + obc_cost_x_person;
+
+
+				let _total_x_couple_classic = classic_bvrg_cost_x_couple + gratuities_cost_x_couple + wifi_cost_x_couple + obc_cost_x_couple;
+				let _total_x_couple_premium = premium_bvrg_cost_x_couple + gratuities_cost_x_couple + wifi_cost_x_couple + obc_cost_x_couple;
+
+				// update totals
+				$('#total_x_person_classic').html( _total_x_person_classic.toFixed(2) );
+				$('#total_x_person_premium').html( _total_x_person_premium.toFixed(2) );
+
+				$('#total_x_couple_classic').html( _total_x_couple_classic.toFixed(2) );
+				$('#total_x_couple_premium').html( _total_x_couple_premium.toFixed(2) );
+			}
+
+			$('#new_rate').on('change', function(){
+				let _val = Number( $(this).val() );
+				new_rate = _val;
+				calcDiff();
+			});
+
+			$('#current_rate').on('change', function(){
+				let _val = Number( $(this).val() );
+				current_rate = _val;
+				calcDiff();
+			});
+
+			function calcDiff(){
+				let diff_x_person = new_rate - current_rate;
+				let diff_x_couple = diff_x_person * 2;
+
+				$('#rate_total_x_person').val( diff_x_person.toFixed(2) );
+				$('#rate_total_x_couple').val( diff_x_couple.toFixed(2) );
+			}
+
+			generateDropdownContent();
+		});
+	</script>
+</html>
